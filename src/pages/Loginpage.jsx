@@ -20,22 +20,24 @@ const Loginpage = () => {
 
 
 
-    <div class="container">
+    <div class="container" >
       <div class="screen">
-        <div class="screen__content">
-          <form class="login" onSubmit={loginUser}>
-            <div class="login__field">
+        <div class="screen__content mainDiv">
+          <form class="login loginF" onSubmit={loginUser}>
+            <div class="login__field usernameF">
               <i class="login__icon fas fa-user"></i>
               <input type="text" class="login__input" name="username" placeholder="User name" />
             </div>
-            <div class="login__field">
+            <div class="login__field passwordF">
               <i class="login__icon fas fa-lock"></i>
               <input type="password" class="login__input" name='password' placeholder="Password"/>
             </div>
-            <button class="button login__submit">
+            <div class="submitB">
+            <button class="button login__submit ">
               <span class="button__text" type="submit">Log In Now</span>
               <i class="button__icon fas fa-chevron-right"></i>
-            </button>				
+            </button>
+            </div>				
           </form>
       
         </div>
