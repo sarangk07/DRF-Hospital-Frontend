@@ -6,16 +6,25 @@
     display: flex;
     flex-direction: column;
 }
-.div1{
+
+.divUserHomepage{
     height: 50vh;
     width: auto;
     background-image: url('https://www.abnewswire.com/uploads/ab8c9d9d5655ccfcac0736e8ed507935.jpg');  
     background-position: center; 
 	background-repeat: no-repeat;
 }
-.div2{
-    background-color: rgb(38, 209, 15);
+
+.divDocHomepage{
+    height: 50vh;
+    width: auto;
+    background-color: rgb(34, 196, 13);
 }
+
+.div2{
+    background-color: rgb(22, 145, 5);
+}
+
 .div3{
     background-color: rgb(14, 131, 233);
 }

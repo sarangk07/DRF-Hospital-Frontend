@@ -1,4 +1,5 @@
 import React from 'react'
+import { useEffect,useState  } from 'react';
 import './Doctor.css'
 import axios from 'axios'
 import { useContext } from 'react';
@@ -6,15 +7,58 @@ import AuthContext from '../context/AuthContext';
 
 function DoctorPage() {
 
-  const { user, logoutUser } = useContext(AuthContext);
+  const { user, logoutUser, authTokens, setDoctors } = useContext(AuthContext);
+  const [userData, setUserData] = useState(null);
 
-  // let profile = async ()=>{
-  //   let response = axios.get('http://127.0.0.1:8000/api/profile/'){
+  const ProfileUpdate = async () => {
+    try {
+      const response = await axios.patch(
+        'http://127.0.0.1:8000/api/profile/',
+        {},
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${authTokens.access}`,
+          },
+        }
+      );
 
-  //   }
-  // }
+      if (response.status === 200) {
+        const data = response.data;
+        // Do something with data if needed
+      } else {
+        console.error('Error updating profile. Status:', response.status);
+      }
+    } catch (error) {
+      console.error('Error updating profile:', error);
+    }
+  };
 
+  const profileGet = async () => {
+    try {
+      const response = await axios.get('http://127.0.0.1:8000/api/doctorlist/', {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${authTokens.access}`,
+        },
+      });
 
+      if (response.status === 200) {
+        const data = response.data;
+        setUserData(data); // Update the state with user data obtained from the API
+      } else {
+        console.error('Error fetching doctor list. Status:', response.status);
+      }
+    } catch (error) {
+      console.error('Error fetching doctor list:', error);
+    }
+  };
+
+  useEffect(() => {
+    // Call the functions when the component mounts
+    ProfileUpdate();
+    profileGet();
+  }, []); // Empty dependency array means it will only run once when mounted
 
 
   return (
@@ -31,13 +75,26 @@ function DoctorPage() {
                    />
                 <button type="button" className="btn btn-outline-dark d4" data-mdb-ripple-color="dark"
                   >
-                  Edit profile
+                    Edit profile
                 </button>
-              </div>
-              <div className="ms-3 d5" >
-                <h5>Andy Horwitz</h5>
-                <p>New York</p>
-              </div>
+                {userData && (
+        <>
+          <div className="ms-3 d5">
+            <h5>{userData.username}</h5>
+            <p>{userData.first_name}</p>
+            <p>{userData.last_name}</p>
+            <p>{userData.email}</p>
+          </div>
+        </>
+      )}
+
+                </div>
+              {/* Your existing JSX */}
+      
+                    
+                  
+              
+              
             </div>
             <div className="p-4 text-black d6" >
               <div className="d-flex justify-content-end text-center py-1">

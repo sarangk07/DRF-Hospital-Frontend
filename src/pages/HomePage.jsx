@@ -6,7 +6,7 @@ import axios from 'axios';
 const HomePage = () => {
     const [doctors, setDoctors] = useState(null);
     const { authTokens } = useContext(AuthContext);
-    const {user} = useContext(AuthContext)
+    const { user } = useContext(AuthContext);
 
     const UsersList = async () => {
         console.log(authTokens)
@@ -17,7 +17,7 @@ const HomePage = () => {
                     'Authorization': String(authTokens?.access),
                 }
             });
-    
+
             if (response.status === 200) {
                 const data = await response.data;
                 setDoctors(data);
@@ -28,7 +28,6 @@ const HomePage = () => {
             console.error("Error fetching users:", error);
         }
     }
-    
 
     useEffect(() => {
         if (doctors === null || doctors === undefined) {
@@ -40,16 +39,28 @@ const HomePage = () => {
 
     return (
         <div className='mainDIV'>
-            <div className="div1"></div>
             <div className="div2">
-                
-                
-                <h2>Available Doctors</h2>
-                {doctors && doctors.map((user) => (
-                    <p key={user.id}>{user.username}</p>
-                ))}
-
-
+                        <div className="divUserHomepage"></div>
+                        <h2>Available Doctors</h2>
+                        <div className="container">
+                            <div className="row div2">
+                                {doctors && doctors.map((doctor) => (
+                                    <div className="col-lg-4 col-md-6 mb-4" key={doctor.id}>
+                                        <div className="card text-center">
+                                            <div className="card-header">
+                                                {doctor.username}
+                                            </div>
+                                            <div className="card-body">
+                                                <h5 className="card-title">Department: {doctor.doctor.department}</h5>
+                                                <p className="card-text">Hospital: {doctor.doctor.hospital}</p>
+                                                <a href="#" className="btn btn-primary">more...</a>
+                                            </div>
+                                            {/* <div className="card-footer text-muted">2 days ago</div> */}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
             </div>
             <div className="div3">3</div>
             <div className="div4">4</div>

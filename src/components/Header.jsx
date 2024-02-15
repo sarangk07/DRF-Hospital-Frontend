@@ -50,7 +50,7 @@ const Header = () => {
                 return <Link to='/doctorPage'>{user.username}</Link>;
               }
               else if(user && !user.is_doctor){
-                return <Link to='/userPage'>{user.username}</Link>;
+                return <Link to='/doctorPage'>{user.username}</Link>;
               }
               else if(!user){
                 return <p>Gust</p>;
