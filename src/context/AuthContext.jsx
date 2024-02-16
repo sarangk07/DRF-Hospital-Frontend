@@ -54,7 +54,7 @@ export const AuthProvider = ({children}) => {
                   nav('/homeDoctor');
                 } else{
                   alert("Welcome User!")
-                  nav('/home');
+                  nav('/');
                 } 
             }else{
                 alert("somthing went wrong!!")

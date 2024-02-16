@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../context/AuthContext";
 import './home.css';
 import axios from 'axios';
+import Header from "../components/Header";
 
 const HomePage = () => {
     const [doctors, setDoctors] = useState(null);
@@ -35,10 +36,12 @@ const HomePage = () => {
         }
     }, [doctors, authTokens?.access]);
 
-    console.log(doctors);
+    console.log('doc',doctors);
 
     return (
+        
         <div className='mainDIV'>
+            <Header/>
             <div className="div2">
                         <div className="divUserHomepage"></div>
                         <h2>Available Doctors</h2>

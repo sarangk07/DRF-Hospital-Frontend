@@ -1,6 +1,7 @@
 import React, {useContext} from 'react'
 import AuthContext from '../context/AuthContext'
 import './login.css'
+import Header from '../components/Header'
 import { useNavigate } from 'react-router-dom'
 
 
@@ -10,19 +11,13 @@ const Loginpage = () => {
     let nav = useNavigate()
     let {loginUser} = useContext(AuthContext)
   return (
-    // <div>
-    //   <form action="" onSubmit={loginUser}>
-    //     <input type="text" name="username" placeholder='Username'/>
-    //     <br />
-    //     <input type="password" name='password' placeholder='password' />
-    //     <br /><input type="submit" />
-    //   </form>
-
-    // </div>
+   
 
 
-
-    <div className="container" >
+<>
+<Header/>
+    <div className="containerlogin" >
+      
       <div className="screen">
         <div className="screen__content mainDiv">
           <form className="login loginF" onSubmit={loginUser}>
@@ -47,6 +42,7 @@ const Loginpage = () => {
         		
       </div>
     </div>
+    </>
   )
 }
 

@@ -18,6 +18,8 @@ const Header = () => {
   const { user, logoutUser } = useContext(AuthContext);
   const [openBasic, setOpenBasic] = useState(false);
   let nav = useNavigate()
+
+  console.log('userrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrheader',user)
   return (
     <MDBNavbar expand='lg' light bgColor='light'>
       <MDBContainer fluid>
@@ -36,7 +38,10 @@ const Header = () => {
           <MDBNavbarNav className='mr-auto mb-2 mb-lg-0'>
             <MDBNavbarItem>
               <MDBNavbarLink active aria-current='page' href='#'>
-                <Link to='/home'>Home</Link>
+              
+              {user && user.is_admin ? <Link to='/admin'>Home</Link> : (user && user.is_doctor ? <Link to='/homeDoctor'>Home</Link> : <Link to='/'> Home </Link>)}
+
+
               </MDBNavbarLink>
             </MDBNavbarItem>
           </MDBNavbarNav>
@@ -47,10 +52,10 @@ const Header = () => {
               
             {(() => {
               if (user && user.is_doctor) {
-                return <Link to='/doctorPage'>{user.username}</Link>;
+                return <Link to='/userPage'>Profile</Link>;
               }
               else if(user && !user.is_doctor){
-                return <Link to='/doctorPage'>{user.username}</Link>;
+                return <Link to='/userPage'>Profile</Link>;
               }
               else if(!user){
                 return <p>Gust</p>;
@@ -60,10 +65,6 @@ const Header = () => {
               }
             })()}
 
-
-
-
-              
               
             </MDBNavbarLink>
             </MDBNavbarItem>

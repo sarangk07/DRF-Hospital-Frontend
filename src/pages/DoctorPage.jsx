@@ -1,6 +1,7 @@
 import React from 'react'
 import { useEffect,useState  } from 'react';
 import './Doctor.css'
+import Header from '../components/Header';
 import axios from 'axios'
 import { useContext } from 'react';
 import AuthContext from '../context/AuthContext';
@@ -62,7 +63,10 @@ function DoctorPage() {
 
 
   return (
+    <>
+    <Header/>
 <div>
+
 <section className="h-100 gradient-custom-2">
     <div className="container py-5 h-100">
       <div className="row d-flex justify-content-center align-items-center h-100">
@@ -77,19 +81,19 @@ function DoctorPage() {
                   >
                     Edit profile
                 </button>
-                {userData && (
-        <>
-          <div className="ms-3 d5">
-            <h5>{userData.username}</h5>
-            <p>{userData.first_name}</p>
-            <p>{userData.last_name}</p>
-            <p>{userData.email}</p>
-          </div>
-        </>
-      )}
+              {userData && (
+                <>
+                  <div className="ms-3 d5">
+                    <h5>{userData.username}</h5>
+                    <p>{userData.first_name}</p>
+                    <p>{userData.last_name}</p>
+                    <p>{userData.email}</p>
+                  </div>
+                </>
+              )}
 
                 </div>
-              {/* Your existing JSX */}
+             
       
                     
                   
@@ -152,6 +156,7 @@ function DoctorPage() {
   </div>
 </section>
     </div>
+    </>
   )
 }
 
