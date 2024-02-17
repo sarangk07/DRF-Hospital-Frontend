@@ -125,7 +125,6 @@ export const AuthProvider = ({children}) => {
 
       if (!refreshToken) {
         console.log('No refresh token available.');
-        // Handle the case where no refresh token is available, maybe redirect to login.
         return;
       }
       try {
@@ -170,7 +169,7 @@ export const AuthProvider = ({children}) => {
         let fourMinutes = 1000*60*15
         let intervel = setInterval(()=>{
             if(authTokens){
-              console.log('loadinggg,,,,,,,token,,,,,,,');
+              console.log('loading,,,,,,,token,,,,,,,');
                 updateToken()
             }
         },fourMinutes)

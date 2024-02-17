@@ -9,7 +9,7 @@ function UserPage() {
   const {user} = useContext(AuthContext)
   const [userData,setUserData] = useState([])
   const { authTokens } = useContext(AuthContext);
-
+  
   const firstNameRef = useRef();
   const lastNameRef = useRef();
   const emailRef = useRef();
@@ -35,19 +35,19 @@ function UserPage() {
     fdata.append('last_name',lastNameRef.current.value)
     fdata.append('phone',phoneRef.current.value)
 
+	if(userData.doctor_pro){
+		fdata.append('doctor_pro.department',departmentValue)
+		fdata.append('doctor_pro.hospital',hospitalValue)
+	}
 
-	fdata.append('doctor_pro.department',departmentRef.current.value)
-	fdata.append('doctor_pro.hospital',hospitalRef.current.value)
 
-	// const doctorProData = {
-	// 	hospital: hospitalValue,
-	// 	department: departmentValue,
-	
-	//   };
-	
-	// fdata.append('doctor_pro', JSON.stringify(doctorProData));
-
-    console.log(fdata)
+	// console.log("user dataaaaaaaaaaaaaaaaa[userData]",userData)
+	// console.log('email',emailRef.current.value)
+	// console.log('username',userNameRef.current.value)
+	// console.log('first_name',firstNameRef.current.value)
+	// console.log('last_name',lastNameRef.current.value)
+	// console.log('phone',phoneRef.current.value)
+    // console.log('updateeeeeeeeeeeeeeeee',fdata)
 
 
     try {
@@ -57,7 +57,7 @@ function UserPage() {
           'Authorization': "Bearer " + String(authTokens?.access),
         },
       });
-      console.log(response)
+      console.log("Responseeeeeeeeeeeeeeeeeeeeeeeeee================",response)
       if (response.status === 201) {
 		console.log('profile updated!.');
         alert('profile updated');
@@ -108,64 +108,14 @@ function UserPage() {
       console.error("error while fetching user data", error);
     }
   };
-
-  console.log(userData);
+  console.log('hi',userData);
+//   console.log(userData);
   useEffect(() => {
     getProfile();
   }, []);
   return (
     <>
-    {/* <div>
-      <h4>users</h4>
-        {userData.doctor_pro == null ? 
-        <>
-        <p>username: {userData.username}</p>
-        <p>email: {userData.email}</p>
-        <p>firstname: {userData.first_name}</p>
-        <p>lastname: {userData.last_name}</p>
-        <p>phone: {userData.phone}</p>
-        <div>
-        <form onSubmit={handleSubmit}>
-          <input type="text" defaultValue={userData.username}  ref={userNameRef}/><br />
-          <input type="email" defaultValue={userData.email}  ref={emailRef}/><br />
-          <input type="text" defaultValue={userData.first_name}  ref={firstNameRef}/><br />
-          <input type="text" defaultValue={userData.last_name}  ref={lastNameRef}/><br />
-          <input type="text" defaultValue={userData.phone}  ref={phoneRef}/><br />
-          <button type='submit'>submit</button>
-        </form>
-        </div>
-        </>
-        :
-        <>
-        <p>{userData.username}</p>
-        <p>{userData.email}</p>
-        <p>{userData.first_name}</p>
-        <p>{userData.last_name}</p>
-        <p>{userData.phone}</p>
-        <p>{userData.doctor_pro.hospital}</p>
-        <p>{userData.doctor_pro.department}</p>
-        <p>{userData.doctor_pro.is_verified}</p>
-        <div>
-        <input type="text" placeholder='username' /><br />
-        <input type="text" placeholder='email'/><br />
-        <input type="text" placeholder='first_name'/><br />
-        <input type="text" placeholder='last_name'/><br />
-        <input type="text" placeholder='phone'/><br />
-
-        <input type="text" placeholder='hospital'/><br />
-        <input type="text" placeholder='department'/><br />
-        
-
-      </div>
-        </>
-      }
-      
-
-      
-
-
-
-    </div> */}
+    
 
 {userData.doctor_pro == null ? <> 
 

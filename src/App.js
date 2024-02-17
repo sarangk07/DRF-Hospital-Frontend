@@ -5,7 +5,7 @@ import HomePage  from './pages/HomePage'
 import Profile from './pages/Profile'
 import Register from './pages/Register'
 import Footer from './components/Footer'
-import DoctorPage from './pages/DoctorPage'
+
 import UserPage from './pages/UserPage'
 import Admin from './pages/Admin'
 import HomePageDoc from './pages/HomePageDoc'
@@ -32,7 +32,7 @@ function App() {
         <Route path='/register' element={<Register/>}/>
         <Route path='/footer' element={<Footer/>}/>
 
-        <Route path='/doctorPage' element={<DoctorPage/>}/>
+        
         <Route path='/userPage' element={<UserPage/>}/>
         <Route path='/admin' element={<Admin/>}/>
 
