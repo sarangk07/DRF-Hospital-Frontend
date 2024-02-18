@@ -41,33 +41,84 @@ const HomePage = () => {
     return (
         
         <div className='mainDIV'>
-            <Header/>
-            <div className="div2">
-                        <div className="divUserHomepage"></div>
-                        <h2>Available Doctors</h2>
-                        <div className="container">
-                            <div className="row div2">
-                                {doctors && doctors.map((doctor) => (
-                                    <div className="col-lg-4 col-md-6 mb-4" key={doctor.id}>
-                                        <div className="card text-center">
-                                            <div className="card-header">
-                                                {doctor.username}
-                                            </div>
-                                            <div className="card-body">
-                                                <h5 className="card-title">Department: {doctor.doctor.department}</h5>
-                                                <p className="card-text">Hospital: {doctor.doctor.hospital}</p>
-                                                <a href="#" className="btn btn-primary">more...</a>
-                                            </div>
-                                            {/* <div className="card-footer text-muted">2 days ago</div> */}
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-            </div>
-            <div className="div3">3</div>
-            <div className="div4">4</div>
+      <Header />
+      <div className="container">
+        <div className="row">
+          <div className="col-md-12">
+            <div className="divUserHomepage"></div>
+          </div>
         </div>
+      </div>
+      <div className="div3 container">
+      <div className="row">
+          <div className="col-md-12">
+            <h2 style={{fontFamily:'initial'}}>Available Doctors</h2>
+            <div className="row">
+              {doctors && doctors.map((doctor) => (
+                <div className="col-lg-4 col-md-6 mb-4" key={doctor.id}>
+                  <div className="card text-center">
+                    <div className="card-header">
+                      {doctor.first_name}
+                    </div>
+                    <div className="card-body">
+                      <h5 className="card-title">Department</h5><p style={{color:"green"}}>{doctor.doctor.department}</p>
+                      <p className="card-text">Hospital: {doctor.doctor.hospital}</p>
+                      <p className="card-text"></p>
+                      <a href="#" className="btn btn-primary"  >Contact</a>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="div4 container-fluid">
+      <div className="footer">
+      <div className="container">
+        <div className="row">
+          <div className="col-md-4">
+            <h4>Contact Us</h4><br />
+            <p>
+              <strong>Address:</strong> 123 Medical Street, Kannur, Kerala, India
+            </p>
+            <p>
+              <strong>Phone:</strong> +91 9988-999-666
+            </p>
+            <p>
+              <strong>Emergency:</strong> 102
+            </p>
+            <p>
+              <strong>Email:</strong> cle@hospital.com
+            </p>
+          </div>
+          <div className="col-md-4">
+            <h4>CLE-Hospital</h4><br />
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Phasellus quis rhoncus sapien, eu congue neque.
+            </p>
+          </div>
+          <div className="col-md-4">
+            <h4>Quick Links</h4><br />
+            <ul>
+              <li><a href="#">Home</a></li>
+              <li><a href="#">Services</a></li>
+              <li><a href="#">Doctors</a></li>
+              <li><a href="#">Appointments</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr />
+        <div className="row">
+          <div className="col-md-12 text-center">
+            <p>&copy; 2024 CLE-Hospital. All rights reserved.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </div>
     );
 }
 

@@ -64,78 +64,78 @@ function Register() {
     <>
     
 
+    <div class="container">
+  <div class="row">
+    <div class="col-lg-10 col-xl-9 mx-auto">
+      <div class="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden">
+        <div class="card-img-left d-none d-md-flex">
+          {/* Background image for card set in CSS! */}
+        </div>
+        <div class="card-body p-4 p-sm-5">
+          <h5 class="card-title text-center mb-5 fw-light fs-5">Create an account</h5>
+          <form onSubmit={handleSubmit}>
 
-<section class="vh-100 bg-image"
-  style={{ backgroundImage: `url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp')` }}
-  >
-  <div class="mask d-flex align-items-center h-100 gradient-custom-3">
-    <div class="container h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
-          <div class="card" style={{borderRadius: "15px"}}>
-            <div class="card-body p-5">
-              <h2 class="text-uppercase text-center mb-5">Create an account</h2>
-
-              <form onSubmit={handleSubmit}>
-
-                <div class="form-outline mb-4">
-                  <input type="text" id="form3Example1cg" ref={firstNameRef} class="form-control form-control-lg" />
-                  <label class="form-label" for="form3Example1cg">First Name</label>
-                </div>
-                <div class="form-outline mb-4">
-                  <input type="text" id="form3Example1cg" ref={lastNameRef} class="form-control form-control-lg" />
-                  <label class="form-label" for="form3Example1cg">Last Name</label>
-                </div>
-                <div class="form-outline mb-4">
-                  <input type="text" id="form3Example1cg" ref={userNameRef} class="form-control form-control-lg" />
-                  <label class="form-label" for="form3Example1cg">User Name</label>
-                </div>
-
-                <div class="form-outline mb-4">
-                  <input type="email" id="form3Example3cg" ref={emailRef} class="form-control form-control-lg" />
-                  <label class="form-label" for="form3Example3cg">Your Email</label>
-                </div>
-
-                <div class="form-outline mb-4">
-                  <input type="password" id="form3Example4cg" ref={passwordRef} class="form-control form-control-lg" />
-                  <label class="form-label" for="form3Example4cg">Password</label>
-                </div>
-
-                <div class="form-outline mb-4">
-                  <input type="password" id="form3Example4cdg" ref={confPasswordRef} class="form-control form-control-lg" />
-                  <label class="form-label" for="form3Example4cdg">Repeat your password</label>
-                </div>
-
-
-
-                <label htmlFor="">Doctor?</label> <input type="checkbox" ref={isDoctorRef} /><br />
-
-
-
-                {/* <div class="form-check d-flex justify-content-center mb-5">
-                  <input class="form-check-input me-2" type="checkbox" value="" id="form2Example3cg" />
-                  <label class="form-check-label" for="form2Example3g">
-                    I agree all statements in <a href="#!" class="text-body"><u>Terms of service</u></a>
-                  </label>
-                </div> */}
-
-                <div class="d-flex justify-content-center">
-                  <button type="submit"
-                    class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>
-                </div>
-
-                <p class="text-center text-muted mt-5 mb-0">Have already an account? <a onClick={()=>nav('/login')}
-                    class="fw-bold text-body"><u>Login here</u></a></p>
-
-              </form>
-
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="floatingFirstName" ref={firstNameRef} />
+              <label for="floatingFirstName">First Name</label>
             </div>
-          </div>
+
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="floatingLastName" ref={lastNameRef} />
+              <label for="floatingLastName">Last Name</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input type="text" class="form-control" id="floatingInputUsername" ref={userNameRef} required autofocus />
+              <label for="floatingInputUsername">Username</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input type="email" class="form-control" id="floatingInputEmail" ref={emailRef} />
+              <label for="floatingInputEmail">Email address</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input type="password" class="form-control" id="floatingPassword" ref={passwordRef} />
+              <label for="floatingPassword">Password</label>
+            </div>
+
+            <div class="form-floating mb-3">
+              <input type="password" class="form-control" id="floatingPasswordConfirm" ref={confPasswordRef} />
+              <label for="floatingPasswordConfirm">Confirm Password</label>
+            </div>
+
+            <div class="form-check mb-3">
+              <input type="checkbox" class="form-check-input" id="isDoctor" ref={isDoctorRef} />
+              <label class="form-check-label" for="isDoctor">Doctor?</label>
+            </div>
+
+            <div class="d-grid mb-2">
+              <button class="btn btn-lg btn-primary btn-login fw-bold text-uppercase" type="submit">Register</button>
+            </div>
+
+            <p class="text-center small mt-2"><a href="#" onClick={() => nav('/login')}>Have an account? Sign In</a></p>
+
+            <hr class="my-4"/>
+
+            <div class="d-grid mb-2">
+              <button class="btn btn-lg btn-google btn-login fw-bold text-uppercase" type="button">
+                <i class="fab fa-google me-2"></i> Sign up with Google
+              </button>
+            </div>
+
+            <div class="d-grid">
+              <button class="btn btn-lg btn-facebook btn-login fw-bold text-uppercase" type="button">
+                <i class="fab fa-facebook-f me-2"></i> Sign up with Facebook
+              </button>
+            </div>
+
+          </form>
         </div>
       </div>
     </div>
   </div>
-</section>
+</div>
     </>
   );
 }

@@ -69,7 +69,7 @@ export const AuthProvider = ({children}) => {
             } else { 
               alert('An error occurred while trying to log in. Please try again later.');
             }
-            alert(error)
+            // alert(error)
         }    
     }
 

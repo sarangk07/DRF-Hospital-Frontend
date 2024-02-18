@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import AuthContext from "../context/AuthContext";
 import Header from "../components/Header";
-
+import Modal from "./Modals";
 
 function Admin() {
   const [users, setUsers] = useState([]);
@@ -11,7 +11,10 @@ function Admin() {
   const { authTokens } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false); // Add loading state
 
-  // Uncomment console logs for debugging (when expected)
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+
+
   console.log(users, "userrrrrrrrrrrrrrrrrrrrrrrrrr");
 
   const encodedTokens = localStorage.getItem("authTokens"); // Get the JSON string
@@ -101,11 +104,19 @@ function Admin() {
     // Set the selected user details in the state
     setSelectedUser(user);
     // Display details using alert or any other method
-    alert(`User Details:\nUsername: ${user.username}\nEmail: ${user.email}${
-      user.is_doctor && user.doctorprofile ? `\nHospital: ${user.doctor[0].hospital}\nDepartment: ${user.doctor[0].department}` : ''
-    }`);
+    // alert(`User Details:\nUsername: ${user.username}\nEmail: ${user.email}${
+    //   user.is_doctor && user.doctor ? `\nHospital: ${user.doctor.hospital}\nDepartment: ${user.doctor.department}` : ''
+    // }`);
+    
+    // Open the modal
+    setIsModalOpen(true);
     
     
+  };
+
+  const closeModal = () => {
+    // Close the modal
+    setIsModalOpen(false);
   };
 
   useEffect(() => {
@@ -115,23 +126,57 @@ function Admin() {
   return (
  
 <>
-    <Header/>
-    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px" }}>
-    <div>
-      {isLoading && <p>Loading users...</p>}
+  <Header />
+  <div className="container mt-3">
+    <div className="row">
+      <div className="col-md-6">
+        {isLoading && <p>Loading users...</p>}
+        <div>
+          <h2 className=" bg-gradient">User List</h2>
+          <Modal isOpen={isModalOpen} onClose={closeModal} userDetails={selectedUser} />
+          {users &&
+            users.map((user) => (
+              <div key={user.id}>
+                {!user.is_admin && !user.is_doctor ? (
+                  <p>
+                    <p className="text-muted">{user.username}</p>
+                    <a
+                      className={`btn btn-primary ${blockuser[user.pk] ? "btn-danger" : "btn-success"}`}
+                      href="#"
+                      onClick={() => handleBlockUnblock(user.pk, !blockuser[user.pk])}
+                    >
+                      {blockuser[user.pk] ? "Unblock" : "Block"}
+                    </a>
+                    <button className="btn btn-info" onClick={() => handleViewDetails(user)}>
+                      View Details
+                    </button>
+                  </p>
+                ) : (
+                  <p></p>
+                )}
+              </div>
+            ))}
+        </div>
+      </div>
 
-      <div>
-        <h2 className="bg-secondary.bg-gradient" >User List</h2>
+      <div className="col-md-6">
+        <h2>Doctor List</h2>
         {users &&
-          users.map((user) => (
-            <div key={user.id}>
-              {!user.is_admin && !user.is_doctor ? (
+          users.map((doctor) => (
+            <div key={doctor.id}>
+              {!doctor.is_admin && doctor.is_doctor ? (
                 <p>
-                  <p className="text-muted">{user.username}</p>
-                  <a className="btn btn-primary" href="#" onClick={() => handleBlockUnblock(user.pk, !blockuser[user.pk])}>
-                    {blockuser[user.pk] ? "Unblock" : "Block"}
+                  <p>{doctor.username}</p>
+                  <a
+                    href="#"
+                    className={`btn btn-primary ${blockuser[doctor.pk] ? "btn-danger" : "btn-success"}`}
+                    onClick={() => handleBlockUnblock(doctor.pk, !blockuser[doctor.pk])}
+                  >
+                    {blockuser[doctor.pk] ? "Unblock" : "Block"}
                   </a>
-                  <button className="btn btn-success" onClick={() => handleViewDetails(user)}>View Details</button>
+                  <button className="btn btn-info" onClick={() => handleViewDetails(doctor)}>
+                    View Details
+                  </button>
                 </p>
               ) : (
                 <p></p>
@@ -140,29 +185,9 @@ function Admin() {
           ))}
       </div>
     </div>
-
-    <div>
-      <h2>Doctor List</h2>
-      {users &&
-        users.map((doctor) => (
-          <div key={doctor.id}>
-            {!doctor.is_admin && doctor.is_doctor ? (
-              <p>
-                <p>{doctor.username}</p>
-                <a href="#" className="btn btn-primary" onClick={() => handleBlockUnblock(doctor.pk, !blockuser[doctor.pk])}>
-                  {blockuser[doctor.pk] ? "Unblock" : "Block"}
-                  
-                </a>
-                <button className="btn btn-success" onClick={() => handleViewDetails(doctor)}>View Details</button>
-              </p>
-            ) : (
-              <p></p>
-            )}
-          </div>
-        ))}
-    </div>
   </div>
-  </>
+</>
+
   );
 }
 

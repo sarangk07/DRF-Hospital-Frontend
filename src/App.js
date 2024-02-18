@@ -5,6 +5,7 @@ import HomePage  from './pages/HomePage'
 import Profile from './pages/Profile'
 import Register from './pages/Register'
 import Footer from './components/Footer'
+import Modal from './pages/Modals'
 
 import UserPage from './pages/UserPage'
 import Admin from './pages/Admin'
@@ -27,7 +28,7 @@ function App() {
       
       <Routes>
  
-        
+        <Route path='/modal' element={<Modal/>}/>
         <Route path='/profile' element={<Profile/>}/>
         <Route path='/register' element={<Register/>}/>
         <Route path='/footer' element={<Footer/>}/>

@@ -26,8 +26,10 @@
 }
 
 .div3{
-    background-color: rgb(14, 131, 233);
+    background-color: rgb(190, 216, 238);
+    border-radius: 5px;
 }
 .div4{
-    background-color: rgb(207, 13, 175);
+    background-color: rgb(48, 44, 44);
+    color: rgb(193, 241, 241);
 }

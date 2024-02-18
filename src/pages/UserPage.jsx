@@ -13,32 +13,54 @@ function UserPage() {
   const firstNameRef = useRef();
   const lastNameRef = useRef();
   const emailRef = useRef();
+//   const phoneRef = useRef();
+//   const userNameRef = useRef(); 
   const phoneRef = useRef();
-  const userNameRef = useRef(); 
+  
+
+  
   const hospitalRef = useRef();
   const departmentRef = useRef();
 
 
   const handleSubmit = async (e)=>{
+	
     e.preventDefault();
     const fdata = new FormData();
+	
 
-	const hospitalValue = hospitalRef.current.value;
-  	const departmentValue = departmentRef.current.value;
+	// const hospitalValue = hospitalRef.current.value;
+	const hospitalValue = hospitalRef.current ? hospitalRef.current.value : '';
+
+  	const departmentValue = departmentRef.current ? departmentRef.current.value : '';
+	
+
+	const emailValue = emailRef.current.value;
+	const firstnameValue = firstNameRef.current.value
+	const lastnameValue = lastNameRef.current.value
+	const phoneValue = phoneRef.current.value
 
 	console.log('hospital:', hospitalValue);
 	console.log('department:', departmentValue);
 
-    fdata.append('email',emailRef.current.value)
-    fdata.append('username',userNameRef.current.value)
-    fdata.append('first_name',firstNameRef.current.value)
-    fdata.append('last_name',lastNameRef.current.value)
-    fdata.append('phone',phoneRef.current.value)
+	
+    fdata.append('email',emailValue)
+    // fdata.append('username',userNameRef.current.value)
+    fdata.append('first_name',firstnameValue)
+    fdata.append('last_name',lastnameValue)
+    fdata.append('phone',phoneValue)
+
+
+	// console.log(phoneRef,"phone--------------------------------------");
 
 	if(userData.doctor_pro){
 		fdata.append('doctor_pro.department',departmentValue)
 		fdata.append('doctor_pro.hospital',hospitalValue)
 	}
+
+	
+
+	
 
 
 	// console.log("user dataaaaaaaaaaaaaaaaa[userData]",userData)
@@ -79,6 +101,11 @@ function UserPage() {
       alert('Error:\n' + JSON.stringify(error.response.data, null, 6));
     }
 
+
+
+
+
+
   }
 
 
@@ -92,7 +119,7 @@ function UserPage() {
       const response = await axios.get('http://127.0.0.1:8000/api/profile/', {
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + String(authTokens.access),
+           Authorization: "Bearer " + String(authTokens.access),
         },
       });
   
@@ -178,10 +205,6 @@ function UserPage() {
 
       <form action="" onSubmit={handleSubmit}>
 			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-				<div class="form-group">
-					<label for="Street">UserName</label>
-					<input defaultValue={userData.username}  ref={userNameRef} type="name" class="form-control" id="Street" />
-				</div>
 			</div>
 			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 				<div class="form-group">
@@ -292,10 +315,10 @@ function UserPage() {
 
       <form action="" onSubmit={handleSubmit}>
 			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-				<div class="form-group">
+				{/* <div class="form-group">
 					<label for="Street">UserName</label>
 					<input defaultValue={userData.username}  ref={userNameRef} type="name" class="form-control" id="Street" />
-				</div>
+				</div> */}
 			</div>
 			<div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
 				<div class="form-group">
